@@ -10,7 +10,8 @@ pipeline {
                 sh "mvn test"
     //            sh "mvn --version"
         //        slackSend channel: 'youtubejenkins', message: 'Job Started'
-          echo "executing test"      
+		          echo "executing test"     
+				  slackSend Channel: 'jenkin1', message: 'job test  done'				  
             }
             
         }
@@ -37,14 +38,16 @@ pipeline {
     post{
         always{
             echo "========always========"
+			slackSend Channel: 'jenkin1', message: 'job always block'				  
         }
         success{
             echo "========pipeline executed successfully ========"
-          //   slackSend channel: 'youtubejenkins', message: 'Success'
+            slackSend channel: 'jenkin1', message: 'Success'
+		  
         }
         failure{
             echo "========pipeline execution failed========"
-            // slackSend channel: 'youtubejenkins', message: 'Job Failed'
+            slackSend channel: 'jenkin1', message: 'Job Failed'
         }
     }
  }
